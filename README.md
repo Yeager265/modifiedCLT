@@ -17,19 +17,9 @@ shared a short summary of the Classical Lamination Theory.
   provides an open course on the topic.
 * [efunda](https://www.efunda.com/formulae/solid_mechanics/composites/comp_laminate.cfm) has an online calculator with a bit of background information.
 
-## Usage
+## Commentary from Yeager
 
-You can clone the repository to your folder of choice using
-[git](https://git-scm.com/downloads):
-
-```
-git clone https://github.com/wjbg/m.CLT.git
-```
-
-Alternatively, you can also download this repository as zip file by
-clicking the green button at the top of this page. All functions are
-reasonably well-documented - if I may say so - and the annotated
-example below should be sufficient to get you started.
+This is a minor fork of CLT, I intend to add additional functionality for shear deformation present in ali honeycomb cores
 
 ## Example
 
