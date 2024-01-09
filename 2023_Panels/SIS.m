@@ -55,14 +55,15 @@ for k=1:n_layers
     
 end
 
-% Generate the z stack
+% Generate z stack
 z = ply_edges_nonuniform(t_array);
 
 %% ABD and abd matrix
 
+ABD = ABD_matrix(Q_bar_array, z);
+abd = inv(ABD);
 
-% ABD = ABD_matrix()
-% abd = inv(ABD);
+
 
 
 

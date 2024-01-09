@@ -55,25 +55,22 @@ for k=1:n_layers
     
 end
 
-% Generate the z stack
-% z = ply_edges_nonuniform(t_array);
-
-%% Move that over to the function
-z_zero = zeros(length(t_array)+1, 1);
-    z_zero(1) = 0;
-    for i=1:length(t_array)
-           z_zero(i+1) = cell2mat(t_array(i)) + z_zero(i);
-    end
-    midplan = max(z_zero)/2
-
-    z__mid = z_zero - z_mid
-
+% Generate z stack
+z = ply_edges_nonuniform(t_array);
 
 %% ABD and abd matrix
 
+ABD = ABD_matrix(Q_bar_array, z);
+abd = inv(ABD);
 
-% ABD = ABD_matrix()
-% abd = inv(ABD);
+%% Laminate engineering constants
+% The engineering constants of the laminate can be determined from the
+% abd-matrix as:
+%
+E_x = 1/(abd(1,1)*n*t);
+E_y = 1/(abd(2,2)*n*t);
+G = 1/(abd(3,3)*n*t);
+
 
 
 
