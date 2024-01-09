@@ -7,6 +7,10 @@
 % # Deformation and stress distribution due to an applied load
 % # Deformation and stress distribution because of a temperature change
 
+%%
+clear
+clc
+
 %% Layup
 t = 0.15E-3;
 n = 24;
@@ -21,13 +25,13 @@ v12 = 0.28;
 G12 = 5E9;
 alpha = [0.2E-6; 30E-6; 0]; % CTE in material CS
 
-C = stiffness_matrix(E1, E2, v12, G12); % Material CS
+Q = stiffness_matrix(E1, E2, v12, G12); % Material CS
 
 %% ABD and abd matrix
-C_r = rotate_C(C, layup); % Cell with the stiffness matrix
+Q_r = rotate_Q(Q, layup); % Cell with the stiffness matrix
                           % of each ply in ply CS
 
-ABD = ABD_matrix(C_r, z);
+ABD = ABD_matrix(Q_r, z);
 abd = inv(ABD);
 
 %% Laminate engineering constants
@@ -51,7 +55,7 @@ N = [1E5; 0; 0;  % Nx, Ny, Nxy (in N/m)
 def = abd*N; % Deformation vector with: [strain_x; strain_y; strain_xy;
              %                            kappa_x;  kappa_y;  kappa_xy]
 
-[stress_r, z_int] = ply_stress(def, C_r, z); % ply CS
+[stress_r, z_int] = ply_stress(def, Q_r, z); % ply CS
 stress = rotate_stress_to_matCS(stress_r, layup); % material CS
 
 plot_stress(stress_r, z_int, 1); % stress in 1* direction
@@ -61,8 +65,8 @@ plot_stress(stress_r, z_int, 1); % stress in 1* direction
 % 220C to room temperature.
 deltaT = -200;
 alpha_r = rotate_alpha(alpha, layup); % CTEs for all plies in ply CS
-Nth = thermal_force(C_r, alpha_r, z, deltaT);
+Nth = thermal_force(Q_r, alpha_r, z, deltaT);
 def = abd*Nth;
 
-[stress_r, z_int] = ply_stress(def, C_r, z, alpha_r, deltaT); % ply CS
+[stress_r, z_int] = ply_stress(def, Q_r, z, alpha_r, deltaT); % ply CS
 stress = rotate_stress_to_matCS(stress_r, layup); % material CS
