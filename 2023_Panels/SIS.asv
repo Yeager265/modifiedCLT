@@ -56,7 +56,18 @@ for k=1:n_layers
 end
 
 % Generate the z stack
-z = ply_edges_nonuniform(t_array);
+% z = ply_edges_nonuniform(t_array);
+
+%% Move that over to the function
+z_zero = zeros(length(t_array)+1, 1);
+    z_zero(1) = 0;
+    for i=1:length(t_array)
+           z_zero(i+1) = cell2mat(t_array(i)) + z_zero(i);
+    end
+    midplan = max(z_zero)/2
+
+    z__mid = z_zero - z_mid
+
 
 %% ABD and abd matrix
 

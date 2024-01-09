@@ -16,7 +16,7 @@ t = 0.15E-3;
 n = 24;
 layup_deg = QI_layup(n);
 layup = layup_deg*(pi/180);
-z = ply_edges(t, n);
+z = ply_edges_uniform(t, n);
 
 %% Material properties
 E1 = 120E9;

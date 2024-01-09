@@ -1,5 +1,5 @@
-function z = ply_edges(h, n)
-    % ply_edges Returns ply top and bottom surface locations.
+function z = ply_edges_uniform(h, n)
+    % ply_edges_basic Returns ply top and bottom surface locations.
     %
     % Arugments:
     %   h : Ply thickness.
