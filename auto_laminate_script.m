@@ -1,7 +1,6 @@
 %% CLT of SIS skin laminate using CFG 1.0
 clear
 clc
-addpath 'C:\Users\CMT\Documents\GitHub\modifiedCLT' %So that folders from modified CLT are available in this folder
 
 %% Layup input
 layup_file = "2023_Panels/SIS_layup.xlsx";
